@@ -1,16 +1,7 @@
-const calculator = {
-    add: function (a, b) {
-        console.log(a + b);
-    },
-    minus: function (a, b) {
-        console.log(a - b);
-    },
-    times: function (a, b) {
-        console.log(a * b);
-    },
-    divide: function (a, b) {
-        console.log(a / b);
-    },
-};
+const age = parseInt(prompt("Insert your age"));
 
-calculator.add(5, 5);
+if (isNaN(age) === false) {
+  console.log(age);
+} else {
+  console.log("Error");
+}
