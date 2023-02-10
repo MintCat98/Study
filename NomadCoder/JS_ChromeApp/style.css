@@ -1,3 +1,16 @@
 body {
-    background-color: beige;
+  background-color: beige;
+}
+
+h1 {
+  color: brown;
+  transition: color 0.25s ease-in-out;
+}
+
+.click {
+  color: darkblue;
+}
+
+.defaultStyle {
+  font-family: "Times New Roman", Times, serif;
 }

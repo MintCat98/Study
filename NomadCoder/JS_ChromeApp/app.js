@@ -1,18 +1,14 @@
 const title = document.querySelector(".title h1");
 
-title.style.color = "black";
-
 function handleTitleClick() {
-  const currentColor = title.style.color; // getter
-  let newColor; // setter
+  const clickClass = "click"; // raw value는 에러의 위험성이 있으니 되도록이면 변수를 설정하자!
+  const currentStyle = title.classList;
 
-  if (currentColor === "black") {
-    newColor = "blue";
+  if (currentStyle.contains(clickClass)) {
+    currentStyle.remove(clickClass);
   } else {
-    newColor = "black";
+    currentStyle.add(clickClass);
   }
-
-  title.style.color = newColor; // 최종 할당
 }
 
 title.addEventListener("click", handleTitleClick);
