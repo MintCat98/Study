@@ -1,7 +1,11 @@
-const title = document.querySelector(".title h1");
-
-function handleTitleClick() {
-  title.classList.toggle("clickColor");
+function loginSubmit(event) {
+  const username = loginInput.value;
+  event.preventDefault();
+  console.log(username);
+  return username;
 }
 
-title.addEventListener("click", handleTitleClick);
+const loginForm = document.querySelector("#login-form");
+const loginInput = document.querySelector("#login-form input");
+
+loginForm.addEventListener("submit", loginSubmit);
