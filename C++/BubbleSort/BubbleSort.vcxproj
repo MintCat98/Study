@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{db678c56-949b-4e59-8fb9-922531d9c859}</ProjectGuid>
+    <ProjectGuid>{c612a0e5-e93d-4839-816f-bcfa15867605}</ProjectGuid>
     <RootNamespace>BubbleSort</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -128,12 +128,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="mySort.cpp" />
-    <ClCompile Include="printArray.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="mySort.h" />
-    <ClInclude Include="printArray.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
