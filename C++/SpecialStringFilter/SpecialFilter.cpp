@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string.h>
+#include <cstring>
 using namespace std;
 /*
 	ASCII: 65~90(cap) | 97~122
