@@ -5,8 +5,8 @@ int IArticleSub::static_sub_counter = 0;
 IArticleSub::IArticleSub(string name) : sub_name{ name } {
 	IArticleSub::static_sub_counter++;
 	sub_id = static_sub_counter;
-	for (IArticlePub* elem : pub_list) {
-		elem = nullptr;
+	for (int i = 0; i < 5; i++) {
+		pub_list[i] = nullptr;
 	}
 	cout << "[Constructor]New Sub Created: (" << this->sub_name << "," << this->sub_id << ")" << endl;
 }
@@ -14,8 +14,8 @@ IArticleSub::IArticleSub(string name) : sub_name{ name } {
 IArticleSub::IArticleSub(string name, IArticlePub* articlePub) : sub_name{ name } {
 	IArticleSub::static_sub_counter++;
 	sub_id = static_sub_counter;
-	for (IArticlePub* elem : pub_list) {
-		elem = nullptr;
+	for (int i = 0; i < 5; i++) {
+		pub_list[i] = nullptr;
 	}
 	cout << "[Constructor]New Sub Created: (" << this->sub_name << "," << this->sub_id << ")" << endl;
 	Attach(articlePub);
@@ -45,8 +45,8 @@ void IArticleSub::AttachResponse(IArticlePub* publisher) {
 	numOfPub++;
 
 	// index == pubID - 1
-	int pid = publisher->getPubID();
 	string pname = publisher->getPubName();
+	int pid = publisher->getPubID();
 	pub_list[pid - 1] = publisher;
 	cout << "[Attach] Sub (" << this->sub_name << "," << this->sub_id << ") is attached to Pub (" << pname << "," << pid << ")" << endl;
 }
@@ -59,16 +59,16 @@ void IArticleSub::Detach(IArticlePub* p_pub) {
 		return;
 	}
 	// Find and delete
-	int pid = p_pub->getPubID();
 	string pname = p_pub->getPubName();
-	IArticlePub* find = pub_list[pid - 1];
-	if (find == p_pub) { find = nullptr; }
+	int pid = p_pub->getPubID();
+	//IArticlePub* find = pub_list[pid - 1];
+	if (pub_list[pid - 1] == p_pub) { pub_list[pid - 1] = nullptr; }
 	else {
 		cout << "KeyError: There is no such publisher." << endl;
 		return;
 	}
-	p_pub->NotifyDetachResponse(this);
 	cout << "[Sub] (" << this->sub_name << "," << this->sub_id << ") unsubscribes [Pub] (" << pname << "," << pid << ")" << endl;
+	p_pub->NotifyDetachResponse(this);
 }
 
 void IArticleSub::DetachResponse(IArticlePub* p_pub) {
@@ -81,8 +81,8 @@ void IArticleSub::DetachResponse(IArticlePub* p_pub) {
 	// Find and delete
 	int pid = p_pub->getPubID();
 	string pname = p_pub->getPubName();
-	IArticlePub* find = pub_list[pid - 1];
-	if (find == p_pub) { find = nullptr; }
+	//IArticlePub* find = pub_list[pid - 1];
+	if (pub_list[pid - 1] == p_pub) { pub_list[pid - 1] = nullptr; }
 	else {
 		cout << "KeyError: There is no such publisher." << endl;
 		return;
@@ -112,4 +112,5 @@ void IArticleSub::PrintAllPub() {
 			cout << "[" << pname << "," << pid << "]";
 		}
 	}
+	cout << endl;
 }

@@ -5,8 +5,9 @@ int IArticlePub::static_pub_counter = 0;
 IArticlePub::IArticlePub(const string name) : pub_name{ name } {
 	IArticlePub::static_pub_counter++;
 	pub_id = static_pub_counter;
-	for (IArticleSub* elem : sub_list) {
-		elem = nullptr;
+	for (int i = 0; i < 5; i++) {
+		// Debugged: Range-based for loop은 포인터 배열에 사용 불가!
+		sub_list[i] = nullptr;
 	}
 	cout << "[Constructor]New Pub Created: (" << this->pub_name << "," << this->pub_id << ")" << endl;
 }
@@ -14,8 +15,8 @@ IArticlePub::IArticlePub(const string name) : pub_name{ name } {
 IArticlePub::IArticlePub(const string name, const string con) : pub_name{ name }, recent_contents{ con } {
 	IArticlePub::static_pub_counter++;
 	pub_id = static_pub_counter;
-	for (IArticleSub* elem : sub_list) {
-		elem = nullptr;
+	for (int i = 0; i < 5; i++) {
+		sub_list[i] = nullptr;
 	}
 	cout << "[Constructor]New Pub Created: (" << this->pub_name << "," << this->pub_id << ")" << endl;
 }
@@ -58,10 +59,9 @@ void IArticlePub::NotifyDetach(IArticleSub* subscriber) {
 		return;
 	}
 	// Find and delete
-	int sid = subscriber->getSubID();
 	string sname = subscriber->getSubName();
-	IArticleSub* find = sub_list[sid - 1];
-	if (find == subscriber) { find = nullptr; }
+	int sid = subscriber->getSubID();
+	if (sub_list[sid - 1] == subscriber) { sub_list[sid - 1] = nullptr; }
 	else {
 		cout << "KeyError: There is no such subscriber." << endl;
 		return;
@@ -78,10 +78,9 @@ void IArticlePub::NotifyDetachResponse(IArticleSub* subscriber) {
 		return;
 	}
 	// Find and delete
-	int sid = subscriber->getSubID();
 	string sname = subscriber->getSubName();
-	IArticleSub* find = sub_list[sid - 1];
-	if (find == subscriber) { find = nullptr; }
+	int sid = subscriber->getSubID();
+	if (sub_list[sid - 1] == subscriber) { sub_list[sid - 1] = nullptr; }
 	else {
 		cout << "KeyError: There is no such subscriber." << endl;
 		return;
@@ -124,4 +123,5 @@ void IArticlePub::PrintAllSub() {
 			cout << "[" << sname << "," << sid << "]";
 		}
 	}
+	cout << endl;
 }
