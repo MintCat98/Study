@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="FullSignature">
+  <Class Name="IArticlePub">
+    <Position X="0.5" Y="0.5" Width="4" />
+    <AssociationLine Name="sub_list" Type="IArticleSub" FixedToPoint="true">
+      <Path>
+        <Point X="4.5" Y="3.76" />
+        <Point X="6.25" Y="3.76" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AgCAAIAAACIIIAAAAAAhAAAACgAAQABCCAAEAAAAAEA=</HashCode>
+      <FileName>IArticlePub.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="sub_list" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="IArticleSub">
+    <Position X="6.25" Y="0.5" Width="4" />
+    <AssociationLine Name="recent_article_pub" Type="IArticlePub" FixedToPoint="true">
+      <Path>
+        <Point X="6.25" Y="2.127" />
+        <Point X="4.5" Y="2.127" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="pub_list" Type="IArticlePub" FixedToPoint="true">
+      <Path>
+        <Point X="6.25" Y="1.737" />
+        <Point X="4.5" Y="1.737" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BAQICAAIACAAAAIAAAAggAAACIAAAAABQIABAAAhAAA=</HashCode>
+      <FileName>IArticleSub.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="recent_article_pub" />
+      <Field Name="pub_list" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

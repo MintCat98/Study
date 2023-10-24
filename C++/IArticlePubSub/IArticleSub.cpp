@@ -61,7 +61,6 @@ void IArticleSub::Detach(IArticlePub* p_pub) {
 	// Find and delete
 	string pname = p_pub->getPubName();
 	int pid = p_pub->getPubID();
-	//IArticlePub* find = pub_list[pid - 1];
 	if (pub_list[pid - 1] == p_pub) { pub_list[pid - 1] = nullptr; }
 	else {
 		cout << "KeyError: There is no such publisher." << endl;
@@ -81,7 +80,6 @@ void IArticleSub::DetachResponse(IArticlePub* p_pub) {
 	// Find and delete
 	int pid = p_pub->getPubID();
 	string pname = p_pub->getPubName();
-	//IArticlePub* find = pub_list[pid - 1];
 	if (pub_list[pid - 1] == p_pub) { pub_list[pid - 1] = nullptr; }
 	else {
 		cout << "KeyError: There is no such publisher." << endl;
