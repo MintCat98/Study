@@ -12,9 +12,11 @@ private:
 	int sub_id;
 	string recent_article_contents;
 	IArticlePub* recent_article_pub;
+	static int static_sub_counter;
+
+protected:
 	IArticlePub* pub_list[5];
 	int numOfPub = 0;
-	static int static_sub_counter;
 
 public:
 	IArticleSub(string name);

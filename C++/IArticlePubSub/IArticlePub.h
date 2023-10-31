@@ -11,9 +11,11 @@ private:
 	string pub_name;
 	int pub_id;
 	string recent_contents;
+	static int static_pub_counter;
+
+protected:
 	IArticleSub* sub_list[5];
 	int numOfSub = 0;
-	static int static_pub_counter;
 
 public:
 	IArticlePub(const string name);
@@ -30,4 +32,5 @@ public:
 	string getRecentContents();
 	int getSubSize();
 	void PrintAllSub();
+	virtual void Event() = 0;
 };
