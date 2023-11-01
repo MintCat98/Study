@@ -10,6 +10,7 @@ int main() {
 	dgist_press* dgistPub = new dgist_press(string("this is dgist pub"));
 	BBC* bbcPub = new BBC();
 	CNN* cnnPub = new CNN();
+
 	IArticlePub* cnnPub_upcasting = cnnPub;
 
 	//Jenny subscribe DGIST, BBC

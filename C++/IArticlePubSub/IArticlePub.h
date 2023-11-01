@@ -20,7 +20,7 @@ protected:
 public:
 	IArticlePub(const string name);
 	IArticlePub(const string name, const string con);
-	~IArticlePub();
+	virtual ~IArticlePub();
 	void NotifyAttach(IArticleSub* subscriber);
 	void NotifyAttachResponse(IArticleSub* subscriber);
 	void NotifyDetach(IArticleSub* subscriber);
