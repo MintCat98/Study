@@ -424,77 +424,73 @@ int main() {
     BBC* bbcPub = new BBC();
     CNN* cnnPub = new CNN();
 
-    IArticlePub* cnnPub_upcasting = cnnPub;
-
     //Jenny subscribe DGIST, BBC
     IArticleSub* jennySub = new IArticleSub("Jenny", dgistPub);
-    bbcPub->NotifyAttach(jennySub);
-
+    *jennySub >> bbcPub; //Operator Overloading
+    
     //Tom subscribe BBC, CNN
-    IArticleSub * tomSub = new IArticleSub("Tom");
-    bbcPub->NotifyAttach(tomSub);
-    cnnPub_upcasting->NotifyAttach(tomSub);
-
+    IArticleSub* tomSub = new IArticleSub("Tom");
+    *tomSub >> bbcPub; //Operator Overloading
+    *tomSub >> cnnPub; //Operator Overloading
+    
     //Kate subscribe DGIST, BBC, CNN
-    IArticleSub * kateSub = new IArticleSub("Kate", dgistPub);
-    bbcPub->NotifyAttach(kateSub);
-    cnnPub_upcasting->NotifyAttach(kateSub);
+    IArticleSub* kateSub = new IArticleSub("Kate", dgistPub);
+    *kateSub >> bbcPub; //Operator Overloading
+    *kateSub >> bbcPub; //Operator Overloading
+    *kateSub >> cnnPub; //Operator Overloading
 
     cout << "All Sub of (" << dgistPub->getPubName() << "," << dgistPub->getPubID() << "): ";
     dgistPub->PrintAllSub();
-    
+
     cout << "All Sub of (" << bbcPub->getPubName() << "," << bbcPub->getPubID() << "): ";
     bbcPub->PrintAllSub();
 
-    cout << "All Sub of (" << cnnPub_upcasting->getPubName() << "," << cnnPub_upcasting->getPubID() << "): ";
-    cnnPub_upcasting->PrintAllSub();
+    cout << "All Sub of (" << cnnPub->getPubName() << "," << cnnPub->getPubID() << "): ";
+    cnnPub->PrintAllSub();
 
     bbcPub->Event();
-    cnnPub_upcasting->Event();
-    dgistPub->Event();
     dgistPub->CheerUp();
     kateSub->Detach(bbcPub);
 
     cout << "All Pub of (" << jennySub->getSubName() << "," << jennySub->getSubID() << "): ";
     jennySub->PrintAllPub();
-    
+
     cout << "All Pub of (" << tomSub->getSubName() << "," << tomSub->getSubID() << "): ";
     tomSub->PrintAllPub();
-
+    
     cout << "All Pub of (" << kateSub->getSubName() << "," << kateSub->getSubID() << "): ";
     kateSub->PrintAllPub();
 
     cout << "=========DGIST Notify ===========" << endl;
-    dgistPub->updatePubContents("Welcome New DGIST students");
+    *dgistPub << "Welcome New DGIST students"; //Operator Overloading
 
     cout << "=========BBC Notify ===========" << endl;
-    bbcPub->updatePubContents("Mr. Son scored at Tottenham");
-
+    *bbcPub << "Mr. Son scored at Tottenham"; //Operator Overloading
+    
     cout << "=========CNN Notify ===========" << endl;
-    cnnPub_upcasting->updatePubContents("New York city celebrates Christmas");
+    *cnnPub << "New York city celebrates Christmas"; //Operator Overloading
     
     cout << "=========DELETING [tomSub]===========" << endl;
     delete tomSub;
 
     cout << "=========DGIST Notify ===========" << endl;
-    dgistPub->updatePubContents("Welcome New DGIST students");
+    *dgistPub << "Welcome New DGIST students"; //Operator Overloading
     
     cout << "=========BBC Notify ===========" << endl;
-    bbcPub->updatePubContents("Mr. Son scored at Tottenham");
+    *bbcPub << "Mr. Son scored at Tottenham"; //Operator Overloading
     
     cout << "=========CNN Notify ===========" << endl;
-    cnnPub_upcasting->updatePubContents("New York city celebrates Christmas");
+    *cnnPub << "New York city celebrates Chirstmas"; //Operator Overloading
     
     cout << "=========Delete all others ===========" << endl;
     delete dgistPub;
     delete bbcPub;
     delete cnnPub;
     delete jennySub;
-
+    //delete tomSub;
     delete kateSub;
 
     return 0;
-
 }
 
 
