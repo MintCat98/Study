@@ -1,5 +1,5 @@
 ﻿  main.cpp
-C:\Users\presi\OneDrive - 대구경북과학기술원\디지스트\공부\2-2\객프\과제\과제4\IArticlePubSub_Final\IArticlePubSub_Final\main.cpp(157,35): warning C4267: 'return': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\presi\OneDrive - 대구경북과학기술원\디지스트\공부\2-2\객프\과제\과제4\IArticlePubSub_Final\IArticlePubSub_Final\main.cpp(277,31): warning C4267: 'return': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\presi\OneDrive - 대구경북과학기술원\디지스트\공부\2-2\객프\과제\과제4\IArticlePubSub_Final\IArticlePubSub_Final\main.cpp(391,16): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\presi\OneDrive - 대구경북과학기술원\디지스트\공부\2-2\객프\과제\과제4\IArticlePubSub_Final\IArticlePubSub_Final\main.cpp(159,35): warning C4267: 'return': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\presi\OneDrive - 대구경북과학기술원\디지스트\공부\2-2\객프\과제\과제4\IArticlePubSub_Final\IArticlePubSub_Final\main.cpp(284,31): warning C4267: 'return': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\presi\OneDrive - 대구경북과학기술원\디지스트\공부\2-2\객프\과제\과제4\IArticlePubSub_Final\IArticlePubSub_Final\main.cpp(402,16): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   IArticlePubSub_Final.vcxproj -> C:\Users\presi\OneDrive - 대구경북과학기술원\디지스트\공부\2-2\객프\과제\과제4\IArticlePubSub_Final\x64\Debug\IArticlePubSub_Final.exe

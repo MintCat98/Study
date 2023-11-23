@@ -31,6 +31,8 @@ public:
     int getSubSize();
     void PrintAllSub();
     virtual void Event() = 0;
+    // << Overloading: Update
+    friend IArticlePub& operator << (IArticlePub& pub, string con);
 };
 
 class IArticleSub {
@@ -80,7 +82,7 @@ public:
             }
         }
         if (find != -1) {
-            cout << "[ERROR]: already subscribe" << publisher->getPubName() << endl;
+            cout << "[ERROR]: already subscribes " << publisher->getPubName() << endl;
             return;
         }
         cout << "[Attach] Pub (" << publisher->getPubName() << "," << publisher->getPubID() << ") is attached to Sub (" << this->getSubName() << "," << this->getSubID() << ")" << endl;
@@ -96,7 +98,7 @@ public:
             }
         }
         if (find != -1) {
-            cout << "[ERROR]: already subscribe" << publisher->getPubName() << endl;
+            cout << "[ERROR]: already subscribes " << publisher->getPubName() << endl;
             return;
         }
         cout << "[Attach] Pub (" << publisher->getPubName() << "," << publisher->getPubID() << ") is attached to Sub (" << this->getSubName() << "," << this->getSubID() << ")" << endl;
@@ -163,6 +165,11 @@ public:
             }
         }
         cout << endl;
+    }
+    // >> Overloading: Attach
+    friend IArticleSub& operator >> (IArticleSub& sub, IArticlePub* pub) {
+        sub.Attach(pub);
+        return sub;
     }
 };
 
@@ -284,6 +291,10 @@ void IArticlePub::PrintAllSub() {
     }
     cout << endl;
 }
+IArticlePub& operator << (IArticlePub& pub, string con) {
+    pub.updatePubContents(con);
+    return pub;
+}
 
 
 int IArticlePub::static_pub_counter = 0;
@@ -358,7 +369,7 @@ void BBC::Event() {
         }
     }
     if (sid == -1) {
-        cout << "[ERROR]: There is no subscribers" << endl;
+        cout << "[ERROR]: There are no subscribers" << endl;
     }
     cout << "The Event winner is (" << sname << "," << sid << ")" << endl;
 }
@@ -396,86 +407,13 @@ void CNN::Event() {
         }
     }
     if (sid == -1) {
-        cout << "[ERROR]: There is no subscribers" << endl;
+        cout << "[ERROR]: There are no subscribers" << endl;
     }
     cout << "The Event winner is (" << sname << "," << sid << ")" << endl;
 }
 
 
 int main() {
-    dgist_press* dgistPub = new dgist_press(string("this is dgist pub"));
-    BBC* bbcPub = new BBC();
-    CNN* cnnPub = new CNN();
-
-    IArticlePub* cnnPub_upcasting = cnnPub;
-
-    //Jenny subscribe DGIST, BBC
-    IArticleSub* jennySub = new IArticleSub("Jenny", dgistPub);
-    bbcPub->NotifyAttach(jennySub);
-
-    //Tom subscribe BBC, CNN
-    IArticleSub* tomSub = new IArticleSub("Tom");
-    bbcPub->NotifyAttach(tomSub);
-    cnnPub_upcasting->NotifyAttach(tomSub);
-
-    //Kate subscribe DGIST, BBC, CNN
-    IArticleSub* kateSub = new IArticleSub("Kate", dgistPub);
-    bbcPub->NotifyAttach(kateSub);
-    cnnPub_upcasting->NotifyAttach(kateSub);
-
-    cout << "All Sub of (" << dgistPub->getPubName() << "," << dgistPub->getPubID() << "): ";
-    dgistPub->PrintAllSub();
-
-    cout << "All Sub of (" << bbcPub->getPubName() << "," << bbcPub->getPubID() << "): ";
-    bbcPub->PrintAllSub();
-
-    cout << "All Sub of (" << cnnPub_upcasting->getPubName() << "," << cnnPub_upcasting->getPubID() << "): ";
-    cnnPub_upcasting->PrintAllSub();
-
-    bbcPub->Event();
-    cnnPub_upcasting->Event();
-    dgistPub->Event();
-    dgistPub->CheerUp();
-    kateSub->Detach(bbcPub);
-
-    cout << "All Pub of (" << jennySub->getSubName() << "," << jennySub->getSubID() << "): ";
-    jennySub->PrintAllPub();
-
-    cout << "All Pub of (" << tomSub->getSubName() << "," << tomSub->getSubID() << "): ";
-    tomSub->PrintAllPub();
-
-    cout << "All Pub of (" << kateSub->getSubName() << "," << kateSub->getSubID() << "): ";
-    kateSub->PrintAllPub();
-
-    cout << "=========DGIST Notify ===========" << endl;
-    dgistPub->updatePubContents("Welcome New DGIST students");
-
-    cout << "=========BBC Notify ===========" << endl;
-    bbcPub->updatePubContents("Mr. Son scored at Tottenham");
-
-    cout << "=========CNN Notify ===========" << endl;
-    cnnPub_upcasting->updatePubContents("New York city celebrates Christmas");
-
-    cout << "=========DELETING [tomSub]===========" << endl;
-    delete tomSub;
-
-    cout << "=========DGIST Notify ===========" << endl;
-    dgistPub->updatePubContents("Welcome New DGIST students");
-
-    cout << "=========BBC Notify ===========" << endl;
-    bbcPub->updatePubContents("Mr. Son scored at Tottenham");
-
-    cout << "=========CNN Notify ===========" << endl;
-    cnnPub_upcasting->updatePubContents("New York city celebrates Christmas");
-
-    cout << "=========Delete all others ===========" << endl;
-    delete dgistPub;
-    delete bbcPub;
-    delete cnnPub;
-    delete jennySub;
-    delete kateSub;
-
-    /*
     dgist_press* dgistPub = new dgist_press(string("this is dgist pub"));
     BBC* bbcPub = new BBC();
     CNN* cnnPub = new CNN();
@@ -545,7 +483,6 @@ int main() {
     delete jennySub;
     //delete tomSub;
     delete kateSub;
-    */
 
     return 0;
 }
